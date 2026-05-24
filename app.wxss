@@ -1,0 +1,70 @@
+/* 每日点菜 - 全局样式 */
+page {
+  --primary: #FF6B35;
+  --primary-light: #FF8C5A;
+  --primary-bg: #FFF5F0;
+  --secondary: #2D3436;
+  --text: #2D3436;
+  --text-light: #636E72;
+  --text-lighter: #B2BEC3;
+  --bg: #F5F6FA;
+  --white: #FFFFFF;
+  --border: #EDF0F5;
+  --red: #E17055;
+  --green: #00B894;
+  --yellow: #FDCB6E;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,0.10);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: 28rpx;
+  color: var(--text);
+  background-color: var(--bg);
+  box-sizing: border-box;
+}
+
+/* 通用按钮 */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 16rpx 48rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary:active {
+  opacity: 0.85;
+}
+
+/* 卡片 */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* 安全区 */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 价格 */
+.price {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.price::before {
+  content: '¥';
+  font-size: 24rpx;
+  font-weight: 500;
+}
