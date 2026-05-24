@@ -1,0 +1,234 @@
+/* 首页样式 */
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.banner {
+  background: linear-gradient(135deg, #FF6B35 0%, #FF8C42 50%, #FFB347 100%);
+  padding: 40rpx 32rpx 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: -60rpx;
+  right: -40rpx;
+  width: 240rpx;
+  height: 240rpx;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+
+.banner::after {
+  content: '';
+  position: absolute;
+  bottom: -80rpx;
+  left: 40rpx;
+  width: 160rpx;
+  height: 160rpx;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+
+.banner-content {
+  padding-bottom: 60rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8rpx;
+}
+
+.banner-subtitle {
+  font-size: 26rpx;
+  color: rgba(255,255,255,0.85);
+}
+
+.banner-wave {
+  position: relative;
+  z-index: 1;
+  margin: 0 -32rpx;
+  height: 40rpx;
+}
+
+.banner-wave svg {
+  width: 100%;
+  height: 100%;
+}
+
+.quick-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 24rpx 20rpx;
+  background: var(--white);
+  margin: -20rpx 20rpx 20rpx;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  position: relative;
+  z-index: 2;
+}
+
+.quick-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 22rpx;
+  color: var(--text-light);
+}
+
+.quick-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+}
+
+.quick-icon.hot { background: #FFF0EB; }
+.quick-icon.cold { background: #E8F8F5; }
+.quick-icon.soup { background: #FFF8E1; }
+.quick-icon.staple { background: #FFF3E0; }
+.quick-icon.drink { background: #E8F5E9; }
+
+.section {
+  padding: 0 20rpx;
+  margin-bottom: 24rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 12rpx;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.title-icon { font-size: 32rpx; }
+
+.section-date {
+  font-size: 24rpx;
+  color: var(--text-lighter);
+}
+
+.featured-scroll {
+  white-space: nowrap;
+  padding: 0 12rpx;
+}
+
+.featured-item {
+  display: inline-flex;
+  flex-direction: column;
+  width: 220rpx;
+  margin-right: 16rpx;
+  padding: 24rpx 20rpx;
+  text-align: center;
+}
+
+.featured-emoji { font-size: 64rpx; margin-bottom: 12rpx; }
+
+.featured-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.featured-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180rpx;
+}
+
+.featured-tags { display: flex; gap: 6rpx; }
+
+.tag {
+  font-size: 18rpx;
+  color: var(--primary);
+  background: var(--primary-bg);
+  padding: 2rpx 10rpx;
+  border-radius: 20rpx;
+}
+
+.featured-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 4rpx;
+}
+
+.popular-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  padding: 0 12rpx;
+}
+
+.popular-item {
+  width: calc(50% - 8rpx);
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.popular-emoji { font-size: 52rpx; }
+
+.popular-name { font-size: 28rpx; font-weight: 600; }
+
+.popular-desc {
+  font-size: 22rpx;
+  color: var(--text-light);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 1.4;
+}
+
+.popular-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4rpx;
+}
+
+.add-btn {
+  width: 48rpx;
+  height: 48rpx;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.add-btn:active {
+  transform: scale(0.9);
+  opacity: 0.8;
+}

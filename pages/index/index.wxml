@@ -1,0 +1,89 @@
+<!-- 首页 -->
+<view class="page">
+  <!-- 顶部 banner -->
+  <view class="banner">
+    <view class="banner-content">
+      <view class="banner-title">🍽️ 今天吃什么？</view>
+      <view class="banner-subtitle">精选每日菜品，吃出幸福感</view>
+    </view>
+    <view class="banner-wave">
+      <svg viewBox="0 0 750 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C150,80 300,0 450,40 C600,80 750,0 750,40 L750,80 L0,80 Z" fill="#F5F6FA"/>
+      </svg>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick-actions">
+    <view class="quick-item" bindtap="goToOrder" data-cat="热菜">
+      <view class="quick-icon hot">🔥</view>
+      <text>热菜</text>
+    </view>
+    <view class="quick-item" bindtap="goToOrder" data-cat="凉菜">
+      <view class="quick-icon cold">🥗</view>
+      <text>凉菜</text>
+    </view>
+    <view class="quick-item" bindtap="goToOrder" data-cat="汤品">
+      <view class="quick-icon soup">🍲</view>
+      <text>汤品</text>
+    </view>
+    <view class="quick-item" bindtap="goToOrder" data-cat="主食">
+      <view class="quick-icon staple">🍚</view>
+      <text>主食</text>
+    </view>
+    <view class="quick-item" bindtap="goToOrder" data-cat="饮品">
+      <view class="quick-icon drink">🧃</view>
+      <text>饮品</text>
+    </view>
+  </view>
+
+  <!-- 每日精选 -->
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">
+        <text class="title-icon">⭐</text>
+        <text>每日精选</text>
+      </view>
+      <view class="section-date">{{todayDate}}</view>
+    </view>
+    <scroll-view scroll-x class="featured-scroll" enhanced show-scrollbar="{{false}}">
+      <view class="featured-item card" wx:for="{{specials}}" wx:key="id" bindtap="goToDishDetail" data-dish="{{item}}">
+        <view class="featured-emoji">{{item.emoji}}</view>
+        <view class="featured-info">
+          <text class="featured-name">{{item.name}}</text>
+          <view class="featured-tags" wx:if="{{item.tags.length}}">
+            <text class="tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+          </view>
+          <view class="featured-bottom">
+            <text class="price">{{item.price}}</text>
+            <view class="add-btn" catchtap="quickAdd" data-dish="{{item}}">+</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 热门菜品 -->
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">
+        <text class="title-icon">🏆</text>
+        <text>热门推荐</text>
+      </view>
+    </view>
+    <view class="popular-grid">
+      <view class="popular-item card" wx:for="{{popularDishes}}" wx:key="id" bindtap="goToDishDetail" data-dish="{{item}}">
+        <view class="popular-emoji">{{item.emoji}}</view>
+        <text class="popular-name">{{item.name}}</text>
+        <text class="popular-desc">{{item.desc}}</text>
+        <view class="popular-footer">
+          <text class="price">{{item.price}}</text>
+          <view class="add-btn" catchtap="quickAdd" data-dish="{{item}}">+</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部间距 -->
+  <view style="height: 120rpx;"></view>
+</view>
