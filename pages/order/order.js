@@ -101,16 +101,17 @@ Page({
   },
 
   clearCart() {
+    var that = this;
     wx.showModal({
       title: '确认清空？',
       content: '将清除购物车中所有菜品',
-      success(res) {
+      success: function(res) {
         if (res.confirm) {
           app.clearCart();
-          this.updateCart();
-          this.setData({ showCartPopup: false });
+          that.updateCart();
+          that.setData({ showCartPopup: false });
         }
-      }.bind(this)
+      }
     });
   },
 

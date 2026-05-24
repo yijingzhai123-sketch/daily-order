@@ -54,21 +54,22 @@ Page({
   },
 
   clearAllData() {
+    var that = this;
     wx.showModal({
       title: '⚠️ 清除数据',
       content: '将清除所有订单记录和购物车数据，此操作不可恢复。\n\n确定继续吗？',
       confirmColor: '#E17055',
-      success(res) {
+      success: function(res) {
         if (res.confirm) {
           app.globalData.orders = [];
           app.globalData.cart = [];
           wx.removeStorageSync('orders');
           wx.removeStorageSync('cart');
           wx.removeTabBarBadge({ index: 1 });
-          this.loadStats();
+          that.loadStats();
           wx.showToast({ title: '已清除', icon: 'success' });
         }
-      }.bind(this)
+      }
     });
   }
 });
