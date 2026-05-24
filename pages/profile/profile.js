@@ -40,6 +40,10 @@ Page({
     wx.switchTab({ url: '/pages/orders/orders' });
   },
 
+  goToDishManage() {
+    wx.navigateTo({ url: '/pages/dish-manage/dish-manage' });
+  },
+
   goToOrder() {
     wx.switchTab({ url: '/pages/order/order' });
   },

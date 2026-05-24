@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/order/order",
     "pages/orders/orders",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/dish-manage/dish-manage"
   ],
   "window": {
     "backgroundTextStyle": "light",
