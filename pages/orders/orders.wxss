@@ -1,0 +1,167 @@
+/* 订单页样式 */
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-bottom: 40rpx;
+}
+
+.header {
+  padding: 28rpx 28rpx 16rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.header-count {
+  font-size: 24rpx;
+  color: var(--text-lighter);
+}
+
+.order-list {
+  padding: 0 20rpx;
+}
+
+.order-card {
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx dashed var(--border);
+  margin-bottom: 16rpx;
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.order-id {
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.order-time {
+  font-size: 22rpx;
+  color: var(--text-lighter);
+}
+
+.order-status {
+  font-size: 24rpx;
+  color: var(--green);
+  background: #E8F8F5;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-weight: 500;
+}
+
+.order-dishes {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.order-dish {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 26rpx;
+}
+
+.order-dish-emoji {
+  font-size: 32rpx;
+}
+
+.order-dish-name {
+  flex: 1;
+  color: var(--secondary);
+}
+
+.order-dish-qty {
+  color: var(--text-lighter);
+  font-size: 24rpx;
+}
+
+.order-dish-price {
+  color: var(--primary);
+  font-weight: 600;
+  min-width: 80rpx;
+  text-align: right;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16rpx;
+  margin-top: 16rpx;
+  border-top: 1rpx solid var(--border);
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.order-total-price {
+  font-size: 36rpx;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.order-remark {
+  margin-top: 12rpx;
+  padding: 12rpx 16rpx;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  font-size: 24rpx;
+  color: var(--text-light);
+}
+
+.remark-label {
+  color: var(--text-lighter);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 160rpx 0;
+  gap: 12rpx;
+}
+
+.empty-emoji {
+  font-size: 80rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text-light);
+}
+
+.empty-hint {
+  font-size: 24rpx;
+  color: var(--text-lighter);
+}
+
+.empty-btn {
+  margin-top: 20rpx;
+  padding: 20rpx 64rpx;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.empty-btn:active {
+  opacity: 0.85;
+}
