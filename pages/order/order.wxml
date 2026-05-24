@@ -1,0 +1,136 @@
+<!-- 点餐页 - 分类筛选 + 菜品列表 + 购物车 -->
+<view class="page">
+  <view class="search-bar">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索菜品..." value="{{keyword}}" bindinput="onSearch" confirm-type="search" />
+      <text class="clear-btn" wx:if="{{keyword}}" bindtap="clearSearch">✕</text>
+    </view>
+  </view>
+
+  <scroll-view scroll-x class="category-bar" enhanced show-scrollbar="{{false}}">
+    <view class="category-item {{activeCategory === cat ? 'active' : ''}}" 
+          wx:for="{{categories}}" wx:key="*this" 
+          bindtap="switchCategory" data-cat="{{item}}">
+      <text>{{item}}</text>
+    </view>
+  </scroll-view>
+
+  <scroll-view scroll-y class="dish-list" enhanced show-scrollbar="{{false}}">
+    <view class="dish-card card" wx:for="{{filteredDishes}}" wx:key="id">
+      <view class="dish-image">
+        <text class="dish-emoji">{{item.emoji}}</text>
+        <view class="spicy-badge" wx:if="{{item.spicy > 0}}">
+          <text wx:for="{{item.spicy}}" wx:for-item="s" wx:key="*this">🌶️</text>
+        </view>
+      </view>
+      
+      <view class="dish-info">
+        <view class="dish-header">
+          <text class="dish-name">{{item.name}}</text>
+          <view class="dish-tags" wx:if="{{item.tags.length}}">
+            <text class="dish-tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+          </view>
+        </view>
+        <text class="dish-desc">{{item.desc}}</text>
+        <view class="dish-bottom">
+          <view class="dish-price">
+            <text class="price-symbol">¥</text>
+            <text class="price-value">{{item.price}}</text>
+          </view>
+          <view class="quantity-ctrl">
+            <view class="qty-btn minus" wx:if="{{getCartQty(item.id) > 0}}" bindtap="decreaseQty" data-id="{{item.id}}">−</view>
+            <text class="qty-num" wx:if="{{getCartQty(item.id) > 0}}">{{getCartQty(item.id)}}</text>
+            <view class="qty-btn plus" bindtap="addToCart" data-dish="{{item}}">+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{filteredDishes.length === 0}}">
+      <text class="empty-emoji">🍽️</text>
+      <text class="empty-text">没有找到相关菜品</text>
+      <text class="empty-hint">试试搜索其他关键词吧</text>
+    </view>
+
+    <view style="height: 160rpx;"></view>
+  </scroll-view>
+
+  <view class="cart-bar {{cartItems.length > 0 ? 'active' : ''}}" wx:if="{{cartItems.length > 0 || showCart}}">
+    <view class="cart-bar-inner">
+      <view class="cart-icon-wrap" bindtap="toggleCartPopup">
+        <view class="cart-icon">
+          <text class="cart-emoji">🛒</text>
+          <view class="cart-badge" wx:if="{{totalCount > 0}}">{{totalCount}}</view>
+        </view>
+      </view>
+
+      <view class="cart-info" bindtap="toggleCartPopup">
+        <text class="cart-total">¥{{totalPrice}}</text>
+        <text class="cart-hint" wx:if="{{cartItems.length > 0}}">点击查看购物车</text>
+      </view>
+
+      <view class="cart-submit {{cartItems.length > 0 ? 'ready' : ''}}" bindtap="submitOrder">
+        <text>{{cartItems.length > 0 ? '去下单' : '请选择菜品'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="cart-popup {{showCartPopup ? 'show' : ''}}" catchtouchmove="preventMove">
+    <view class="popup-overlay" bindtap="closeCartPopup"></view>
+    <view class="popup-content">
+      <view class="popup-header">
+        <text class="popup-title">🛒 购物车</text>
+        <view class="popup-clear" bindtap="clearCart">清空</view>
+        <view class="popup-close" bindtap="closeCartPopup">✕</view>
+      </view>
+
+      <scroll-view scroll-y class="popup-list" wx:if="{{cartItems.length > 0}}">
+        <view class="cart-item" wx:for="{{cartItems}}" wx:key="id">
+          <text class="cart-item-emoji">{{item.emoji}}</text>
+          <view class="cart-item-info">
+            <text class="cart-item-name">{{item.name}}</text>
+            <text class="cart-item-price">¥{{item.price}}</text>
+          </view>
+          <view class="cart-item-ctrl">
+            <view class="qty-btn minus" bindtap="decreaseQty" data-id="{{item.id}}">−</view>
+            <text class="qty-num">{{item.quantity}}</text>
+            <view class="qty-btn plus" bindtap="addToCart" data-dish="{{item}}">+</view>
+          </view>
+        </view>
+      </scroll-view>
+
+      <view class="popup-empty" wx:if="{{cartItems.length === 0}}">
+        <text class="empty-emoji">🛒</text>
+        <text>购物车是空的</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="confirm-popup {{showConfirm ? 'show' : ''}}">
+    <view class="popup-overlay" bindtap="closeConfirm"></view>
+    <view class="popup-content confirm-content">
+      <view class="popup-header">
+        <text class="popup-title">📋 确认订单</text>
+        <view class="popup-close" bindtap="closeConfirm">✕</view>
+      </view>
+      <scroll-view scroll-y class="confirm-items">
+        <view class="confirm-item" wx:for="{{cartItems}}" wx:key="id">
+          <text>{{item.emoji}} {{item.name}}</text>
+          <view class="confirm-item-right">
+            <text>x{{item.quantity}}</text>
+            <text class="confirm-price">¥{{item.price * item.quantity}}</text>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="confirm-total">
+        <text>合计</text>
+        <text class="confirm-total-price">¥{{totalPrice}}</text>
+      </view>
+      <view class="confirm-actions">
+        <view class="btn-cancel" bindtap="closeConfirm">再想想</view>
+        <view class="btn-confirm" bindtap="doSubmitOrder">确认下单</view>
+      </view>
+    </view>
+  </view>
+</view>
